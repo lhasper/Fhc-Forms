@@ -29,5 +29,12 @@ namespace Fhc.Models
         {
             return new ApplicationDbContext();
         }
-    }
+
+        public System.Data.Entity.DbSet<Fhc.Models.Department> Departments { get; set; }
+
+        public System.Data.Entity.DbSet<Fhc.Models.Employee> Employees { get; set; }
+
+       
+        public System.Data.Entity.DbSet<Fhc.Models.Building> Buildings { get; set; }
+        }
 }
