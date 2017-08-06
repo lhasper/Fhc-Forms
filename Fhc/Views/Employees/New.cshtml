@@ -9,112 +9,144 @@
 <h2>New It Access Form</h2>
 
 
-@using (Html.BeginForm("New","Employees")) 
+@using (Html.BeginForm("Save","Employees")) 
 {
-    @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Employee</h4>
-        <hr />
+    
+    
         @Html.ValidationSummary(true, "Please fix the following errors.", new { @class = "text-danger" })
         
 
        
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Employee.FirstName)
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Employee.FirstName, new  { @class = "form-control"  })
-                @Html.ValidationMessageFor(model => model.Employee.FirstName)
+            @Html.LabelFor(m => m.Employee.FirstName)
+           
+                @Html.TextBoxFor(m => m.Employee.FirstName, new  { @class = "form-control"  })
+                @Html.ValidationMessageFor(m => m.Employee.FirstName)
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Employee.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Employee.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Employee.LastName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        
-        
-        <div class="form-group">
-            @Html.LabelFor(m => m.Employee.Department)
-                @Html.DropDownListFor(m => m.Employee.Department, new SelectList(Model.Departments, "Id", "DepartmentName"), "Select Department", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Employee.Department)
-            </div>
-        </div>
        
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Employee.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Employee.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Employee.Title, "", new { @class = "text-danger" })
+            @Html.LabelFor(m => m.Employee.LastName)
+           
+                @Html.TextBoxFor(m => m.Employee.LastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Employee.LastName)
             </div>
-        </div>
-        
-        <div class="form-group">
-            @Html.LabelFor(m => m.Employee.Building, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.Employee.Building, new SelectList(Model.Building, "Id", "BuildingName"), "Select Building", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Employee.Building, "", new { @class = "text-danger" })
-            </div>
-        </div>
+      
 
         
+        
+        <div class="form-group">
+            @Html.LabelFor(m => m.Employee.DepartmentId)
+                @Html.DropDownListFor(m => m.Employee.DepartmentId, new SelectList(Model.Departments, "Id", "DepartmentName"), "Select Department", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Employee.DepartmentId)
+            </div>
+        
+       
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Employee.StartDate)
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Employee.StartDate, "{0:d MMM yyyy}", new  { @class = "form-control"  })
-                @Html.ValidationMessageFor(model => model.Employee.StartDate, "", new { @class = "text-danger" })
+            @Html.LabelFor(m => m.Employee.Title)
+            
+                @Html.TextBoxFor(m => m.Employee.Title,new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Employee.Title)
             </div>
-        </div>
+        
+        
+        <div class="form-group">
+            @Html.LabelFor(m => m.Employee.BuildingId)
+            
+                @Html.DropDownListFor(m => m.Employee.BuildingId, new SelectList(Model.Building, "Id", "BuildingName"), "Select Building", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Employee.BuildingId)
+            </div>
+      
+
+        
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Employee.Supervisor, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Employee.Supervisor, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Employee.Supervisor, "", new { @class = "text-danger" })
+            @Html.LabelFor(m => m.Employee.StartDate)
+           
+                @Html.TextBoxFor(m => m.Employee.StartDate, "{0:d MMM yyyy}", new  { @class = "form-control"  })
+                @Html.ValidationMessageFor(m => m.Employee.StartDate)
             </div>
-        </div>
+       
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Employee.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Employee.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Employee.UserName, "", new { @class = "text-danger" })
+            @Html.LabelFor(m => m.Employee.Supervisor)
+        
+                @Html.TextBoxFor(m => m.Employee.Supervisor,new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Employee.Supervisor)
             </div>
-        </div>
+        
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Employee.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Employee.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Employee.Password, "", new { @class = "text-danger" })
-            </div>
+    
+       
+        <div class="checkbox">
+            <label> @Html.CheckBoxFor(m => m.Employee.Domain) Domain</label>
+            
         </div>
         
-    <div class="form-group">
-        @Html.LabelFor(model => model.Employee.FullTimeEmployee, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Employee.FullTimeEmployee, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Employee.FullTimeEmployee, "", new { @class = "text-danger" })
+       
+    
+        
+        <div class="checkbox">
+            <label>  @Html.CheckBoxFor(m => m.Employee.Epic) Epic </label>
+            
+
         </div>
+    
+    <div class="checkbox">
+        <label> @Html.CheckBoxFor(m => m.Employee.Dentrix) Dentrix</label>
+
     </div>
-    @Html.HiddenFor(m => m.Employee.Id)
-    @Html.AntiForgeryToken()
+   
+        <div class="checkbox">
+            <label>@Html.CheckBoxFor(m => m.Employee.PhoneExt) Phone Ext</label>
+           
+
+        </div>
+  
+        <div class="checkbox">
+            <label>@Html.CheckBoxFor(m => m.Employee.Internet) Internet</label>
+           
+
+        </div>
+   
+    <div class="checkbox">
+        <label>@Html.CheckBoxFor(m => m.Employee.Email) Email</label>
+        
+
+    </div>
+  
+    <div class="checkbox">
+        <label>@Html.CheckBoxFor(m => m.Employee.Skype) Skype</label>
+       
+
+    </div>
+    
+    <div class="checkbox">
+        <label>@Html.CheckBoxFor(m => m.Employee.Laptop) Laptop</label>
+       
+
+    </div>
+   
+
+
+        @Html.HiddenFor(m => m.Employee.Id)
+        @*@Html.HiddenFor(m => m.Employee.FullTimeEmployeeId)*@
+        @Html.HiddenFor(m => m.Employee.UserName)
+        @Html.HiddenFor(m => m.Employee.Password)
+        @Html.AntiForgeryToken()
 
         <button type="submit" class="btn btn-primary">Save</button>
-       
-
-    }
 
 
+        }
 
-@section Scripts
+
+
+        @section Scripts
     {
-        @Scripts.Render("~/bundles/jqueryval");
-    }
+            @Scripts.Render("~/bundles/jqueryval");
+        }
+}

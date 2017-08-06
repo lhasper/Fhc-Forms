@@ -11,8 +11,9 @@ namespace Fhc.ViewModels
         {
         public  IEnumerable<Department> Departments { get; set; }
         public Employee Employee { get; set; }
-        public int EmployeeNumber { get; set; }
+       // public FullTimeEmployee FullTimeEmployee { get; set; }
             public IEnumerable<Building> Building { get; set; }
+       
 
 
         

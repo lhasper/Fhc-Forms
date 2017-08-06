@@ -175,10 +175,35 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708020230002_NewInitial.cs" />
+    <Compile Include="Migrations\201708020230002_NewInitial.Designer.cs">
+      <DependentUpon>201708020230002_NewInitial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708020235409_PopulateDepartmentAndBuilding.cs" />
+    <Compile Include="Migrations\201708020235409_PopulateDepartmentAndBuilding.Designer.cs">
+      <DependentUpon>201708020235409_PopulateDepartmentAndBuilding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708041852068_ChangedThingsUp.cs" />
+    <Compile Include="Migrations\201708041852068_ChangedThingsUp.Designer.cs">
+      <DependentUpon>201708041852068_ChangedThingsUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708041927010_AddTestEmployee.cs" />
+    <Compile Include="Migrations\201708041927010_AddTestEmployee.Designer.cs">
+      <DependentUpon>201708041927010_AddTestEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708041940358_AddTestEmployee1.cs" />
+    <Compile Include="Migrations\201708041940358_AddTestEmployee1.Designer.cs">
+      <DependentUpon>201708041940358_AddTestEmployee1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708042009293_DateTimeNull.cs" />
+    <Compile Include="Migrations\201708042009293_DateTimeNull.Designer.cs">
+      <DependentUpon>201708042009293_DateTimeNull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Building.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\FullTimeEmployee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -263,6 +288,26 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201708020230002_NewInitial.resx">
+      <DependentUpon>201708020230002_NewInitial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708020235409_PopulateDepartmentAndBuilding.resx">
+      <DependentUpon>201708020235409_PopulateDepartmentAndBuilding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708041852068_ChangedThingsUp.resx">
+      <DependentUpon>201708041852068_ChangedThingsUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708041927010_AddTestEmployee.resx">
+      <DependentUpon>201708041927010_AddTestEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708041940358_AddTestEmployee1.resx">
+      <DependentUpon>201708041940358_AddTestEmployee1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708042009293_DateTimeNull.resx">
+      <DependentUpon>201708042009293_DateTimeNull.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

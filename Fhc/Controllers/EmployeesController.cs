@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Mvc;
 using Fhc.Models;
@@ -25,23 +26,20 @@ namespace Fhc.Controllers
             db.Dispose();
         }
 
-        
+        // GET: /New/
+        [HttpGet]
         public ActionResult New()
         {
             var departments = db.Departments.ToList();
             var buildings = db.Buildings.ToList();
             
-            
-            
-
-            
-
             var viewModel = new NewItAccessViewModel
                             {
                                 Employee = new Employee(),
-                               
+                               //FullTimeEmployee = new FullTimeEmployee(),
                                 Departments = departments,
                                 Building = buildings,
+                               
                                 
 
 
@@ -51,49 +49,63 @@ namespace Fhc.Controllers
             return View("New",viewModel);
         }
 
-        // POST: Employees/Create
+        // POST: Employees/New
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult New(
-            [Bind(Include =
-                "Id,FullTimeEmployee,FirstName,LastName,Department,Title,Building,StartDate,Supervisor,UserName,Password,Domain,Epic,Dentrix,Email,Internet,Skype,PhoneExt,Laptop")]
-            Employee employee)
+        public ActionResult Save(
+            //[Bind(Include =
+            //   "Id,FullTimeEmployeeId,FirstName,LastName,Department,Title,Building,StartDate,Supervisor,UserName,Password,Domain,Epic,Dentrix,Email,Internet,Skype,PhoneExt,Laptop")]
+          //FormCollection formCollection, Employee employee)
+          Employee employee)
         {
-            if ( ModelState.IsValid )
+            //var empNum = 0; 
+            
+            if ( !ModelState.IsValid )
             {
                 var viewModel = new NewItAccessViewModel()
                                 {
                                     Employee = employee,
                                     Departments = db.Departments.ToList(),
-                                    Building = db.Buildings.ToList()
-
-                                };
+                                    Building = db.Buildings.ToList(),
+                                    
+               //FullTimeEmployee = new FullTimeEmployee()
+                };
 
                 return View("New", viewModel);
                 }
-            var empNum = new FullTimeEmployee();
-            db.SaveChanges();
+
+
+
+            
+
             if (employee.Id == 0)
-            {
+            
+               // var empNum = new FullTimeEmployee();
+               // db.SaveChanges();
+               //var empNum= new FullTimeEmployee();
+                //db.FullTimeEmployees.Add(empNum);
+                
+              
                 db.Employees.Add(employee);
-            }
+            
             else
             {
-                
-               
+                //var empNum = new FullTimeEmployee();
+
+                var empNum = GetEmployeeId();
                 var employeeInDb = db.Employees.Single(c => c.Id == employee.Id);
                 employeeInDb.FirstName = employee.FirstName;
-                employeeInDb.FullTimeEmployee = empNum;
+                //employeeInDb.FullTimeEmployeeId = empNum;
                 employeeInDb.LastName = employee.LastName;
-                employeeInDb.Department = employee.Department;
+                employeeInDb.DepartmentId = employee.DepartmentId;
                 employeeInDb.Title = employee.Title;
-                employeeInDb.Building = employee.Building;
+                employeeInDb.BuildingId = employee.BuildingId;
                 employeeInDb.StartDate = employee.StartDate;
                 employeeInDb.Supervisor = employee.Supervisor;
-                employeeInDb.UserName = employee.UserName;
-                employeeInDb.Password = employee.Password;
+                employeeInDb.UserName = "test";
+                employeeInDb.Password = "test";
                 employeeInDb.Domain = employee.Domain;
                 employeeInDb.Epic = employee.Epic;
                 employeeInDb.Dentrix = employee.Dentrix;
@@ -105,7 +117,7 @@ namespace Fhc.Controllers
                 
             }
             db.SaveChanges();
-            return RedirectToAction("New","Employees");
+            return RedirectToAction("Index","Home");
                 
         }
 
@@ -113,9 +125,9 @@ namespace Fhc.Controllers
         
 
         // GET: Employees
-        public ActionResult Index()
+        public ViewResult Index()
         {
-            return View(db.Employees.ToList());
+            return View();
         }
 
         // GET: Employees/Details/5
@@ -220,6 +232,17 @@ namespace Fhc.Controllers
             if (employee != null) db.Employees.Remove(employee);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public int GetEmployeeId()
+        {
+            //var y = empId;
+          // var empId = 0;
+            var x = new FullTimeEmployee();
+            db.FullTimeEmployees.Add(x);
+            db.SaveChanges();
+           var empId = x.FullTimeEmployeeId;
+            return empId;
         }
 
     }
